@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food & Treats - Habit Harvest</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #2E7D32;
+            --light-green: #E8F5E9;
+            --bg-color: #F9FBF9;
+            --text-main: #1C211D;
+            --text-sub: #667064;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Mobile Container Layout matching your App Theme */
+        .shop-container {
+            width: 100%;
+            max-width: 450px;
+            background-color: var(--card-bg);
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            padding-bottom: 30px;
+            position: relative;
+        }
+
+        /* Sub-page Navigation Header */
+        .sub-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 24px 15px;
+        }
+
+        .back-btn {
+            background-color: #F1F3F1;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .category-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .coin-badge {
+            background-color: #FFFDF0;
+            border: 1px solid #FFE0B2;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        /* Complete Grid Section */
+        .main-content {
+            padding: 10px 24px 20px;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        /* Item Display Card */
+        .item-card {
+            background-color: #F7F9F7;
+            border-radius: 20px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-image-placeholder {
+            background-color: #FFFFFF;
+            border-radius: 16px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .item-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .item-price {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .add-btn {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="shop-container">
+        <!-- Sub page header with link back to shop.html -->
+        <header class="sub-header">
+            <a href="shop.html" class="back-btn">
+                <i class="fa-solid fa-chevron-left"></i>
+            </a>
+            <h1 class="category-title">Food & Treats</h1>
+            <div class="coin-badge">
+                <span>🪙</span> 350
+            </div>
+        </header>
+
+        <!-- Expanded Item View -->
+        <main class="main-content">
+            <div class="items-grid">
+                <!-- Item 1 -->
+                <div class="item-card">
+                    <div class="item-image-placeholder">🧆</div>
+                    <h3 class="item-name">Premium Dog Food</h3>
+                    <div class="item-footer">
+                        <div class="item-price">🪙 120</div>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="item-card">
+                    <div class="item-image-placeholder">🫙</div>
+                    <h3 class="item-name">Chicken Treats</h3>
+                    <div class="item-footer">
+                        <div class="item-price">🪙 80</div>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="item-card">
+                    <div class="item-image-placeholder">🦴</div>
+                    <h3 class="item-name">Chew Bone</h3>
+                    <div class="item-footer">
+                        <div class="item-price">🪙 60</div>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="item-card">
+                    <div class="item-image-placeholder">🥩</div>
+                    <h3 class="item-name">Meat Sticks</h3>
+                    <div class="item-footer">
+                        <div class="item-price">🪙 90</div>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>

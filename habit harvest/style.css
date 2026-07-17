@@ -420,3 +420,175 @@ nav ul li a:hover {
     align-items: center;
     justify-content: center;
 }
+
+
+
+
+/* 1. This darkens and blurs the screen background behind the popup window */
+.modal-overlay {
+    display: none;
+    /* This makes it INVISIBLE when the page first loads */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Translucent dark background */
+    backdrop-filter: blur(5px);
+    /* Elegant blur effect */
+    z-index: 9999;
+    /* Keeps it on top of all your current elements */
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2. The mobile-like card box container */
+.modal-container {
+    background-color: #FFFFFF;
+    width: 90%;
+    max-width: 420px;
+    height: 80vh;
+    border-radius: 35px;
+    padding: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* 3. The Close 'X' round button styling */
+.close-modal-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #F1F3F1;
+    border: none;
+    font-size: 24px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 4. Formatting header elements */
+.shop-modal-header {
+    margin-bottom: 15px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.coin-badge {
+    background-color: #FFFDF0;
+    border: 1px solid #FFE0B2;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #667064;
+    margin-top: 5px;
+}
+
+/* 5. Horizontal scroll categories layout */
+.categories-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.categories-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.category-pill {
+    padding: 8px 14px;
+    border-radius: 20px;
+    background-color: #F1F3F1;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.category-pill.active {
+    background-color: #2E7D32;
+    color: white;
+}
+
+/* 6. Grid inside the popup */
+.modal-shop-content {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.item-card {
+    background-color: #F7F9F7;
+    border-radius: 20px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-image-placeholder {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.item-name {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.item-price {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.add-btn {
+    background-color: #2E7D32;
+    color: white;
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+}

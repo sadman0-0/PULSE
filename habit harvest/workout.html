@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Habit Harvest - Workout</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="workout.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ================= NAVBAR ================= -->
+
+        <header>
+
+            <div class="logo">
+
+                🐶 Habit Harvest
+
+            </div>
+
+            <nav>
+
+                <a href="dashboard.html">Dashboard</a>
+
+                <a href="workout.html" class="active">Workout</a>
+
+                <a href="habits.html">Habits</a>
+
+                <a href="progress.html">Progress</a>
+
+                <a href="shop.html">Shop</a>
+
+            </nav>
+
+        </header>
+
+
+
+        <!-- =============== WELCOME ================= -->
+
+        <section class="welcome">
+
+            <div>
+
+                <h1>Today's Workout</h1>
+
+                <p>Complete your workout and earn rewards!</p>
+
+            </div>
+
+            <div class="coin-box">
+
+                🪙 Coins
+
+                <span id="coins">350</span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="workout-layout">
+
+
+
+
+            <!-- LEFT SIDE -->
+
+            <section class="left-panel">
+
+                <div class="card">
+
+                    <h2>
+
+                        <i class="fa-solid fa-fire"></i>
+
+                        Workout Streak
+
+                    </h2>
+
+                    <h1 id="streak">12 Days</h1>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h2>
+
+                        Today's Exercises
+
+                    </h2>
+
+                    <ul class="exercise-list">
+
+                        <li>🏃 Jumping Jacks</li>
+
+                        <li>💪 Push Ups</li>
+
+                        <li>🦵 Squats</li>
+
+                        <li>🤸 Plank</li>
+
+                        <li>🚶 Stretching</li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h2>
+
+                        Calories Burned
+
+                    </h2>
+
+                    <h1 id="calories">
+
+                        100 kcal
+
+                    </h1>
+
+                </div>
+
+            </section>
+
+
+
+
+
+
+            <!-- CENTER -->
+
+            <section class="center-panel">
+
+                <div class="video-card">
+
+                    <h2>
+
+                        Daily streaks
+
+                    </h2>
+
+                    <div class="video-placeholder">
+
+                        <img src="streaks 2.jpeg" alt="streaks 2">
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="timer-card">
+
+                    <h2>
+
+                        Workout Timer
+
+                    </h2>
+
+                    <h1 id="timer">
+
+                        00:30
+
+                    </h1>
+
+                    <div class="buttons">
+
+                        <button id="startBtn">
+
+                            ▶ Start
+
+                        </button>
+
+                        <button id="pauseBtn">
+
+                            ⏸ Pause
+
+                        </button>
+
+                        <button id="resetBtn">
+
+                            🔄 Reset
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+
+
+
+            <!-- RIGHT -->
+
+            <section class="right-panel">
+
+                <div class="card">
+
+                    <h2>
+
+                        Repetitions
+
+                    </h2>
+
+                    <h1 id="reps">
+
+                        0 / 20
+
+                    </h1>
+
+                </div>
+
+
+
+                <div class="card pet-card">
+
+                    <img src="virtual puppy.jpeg">
+
+                    <h2>
+
+                        Yuki 🐶
+
+                    </h2>
+
+                    <p id="petMessage">
+
+                        Let's exercise together!
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <h2>
+
+                        Reward
+
+                    </h2>
+
+                    <h1>
+
+                        +50 Coins
+
+                    </h1>
+
+                    <button id="finishBtn">
+
+                        Finish Workout
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="workout.js"></script>
+
+</body>
+
+</html>

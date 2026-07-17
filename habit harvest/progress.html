@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Harvest - Progress</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: #E8F5E9;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: #1B5E20;
+        }
+
+        nav a {
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+            color: #1B5E20;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+        }
+
+        .card h2 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .progress-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+        }
+
+        .progress-title {
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .progress {
+            background: #ddd;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            background: #4CAF50;
+        }
+
+        .bar.exercise {
+            width: 80%;
+        }
+
+        .bar.water {
+            width: 65%;
+        }
+
+        .bar.sleep {
+            width: 90%;
+        }
+
+        .bar.screen {
+            width: 50%;
+        }
+
+        .pet {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+        }
+
+        .pet img {
+            width: 150px;
+            margin: 20px 0;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            background: #1B5E20;
+            color: white;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #388E3C;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+
+            <h1>Your Progress</h1>
+
+            <nav>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="shop.html">Shop</a>
+                <a href="progress.html">Progress</a>
+            </nav>
+
+        </header>
+
+        <div class="cards">
+
+            <div class="card">
+                <h2>Coins</h2>
+                <p>650</p>
+            </div>
+
+            <div class="card">
+                <h2>Exercise</h2>
+                <p>300 min</p>
+            </div>
+
+            <div class="card">
+                <h2>Streak</h2>
+                <p>12 Days</p>
+            </div>
+
+            <div class="card">
+                <h2>Level</h2>
+                <p>5</p>
+            </div>
+
+        </div>
+
+        <div class="progress-box">
+
+            <div class="progress-title">
+                Exercise Progress
+            </div>
+
+            <div class="progress">
+                <div class="bar exercise"></div>
+            </div>
+
+        </div>
+
+        <div class="progress-box">
+
+            <div class="progress-title">
+                Water Intake
+            </div>
+
+            <div class="progress">
+                <div class="bar water"></div>
+            </div>
+
+        </div>
+
+        <div class="progress-box">
+
+            <div class="progress-title">
+                Sleep Goal
+            </div>
+
+            <div class="progress">
+                <div class="bar sleep"></div>
+            </div>
+
+        </div>
+
+        <div class="progress-box">
+
+            <div class="progress-title">
+                Screen Time Goal
+            </div>
+
+            <div class="progress">
+                <div class="bar screen"></div>
+            </div>
+
+        </div>
+
+        <div class="pet">
+
+            <h2>Your Virtual Pet</h2>
+
+            <img src="virtual puppy.jpeg" alt="Pet">
+
+            <p>Your buddy is growing healthier every day! 🎉</p>
+
+            <button onclick="window.location.href='dashboard.html'">
+                ← Back to Dashboard
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

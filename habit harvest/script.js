@@ -158,3 +158,29 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+
+<script>
+    // Grab the elements from the document
+    const shopModal = document.getElementById('shopModal');
+    const openShopBtn = document.getElementById('openShopBtn');
+    const closeShopBtn = document.getElementById('closeShopBtn');
+
+    // 1. When the user clicks "View all", show the shop overlay window
+    openShopBtn.addEventListener('click', function() {
+        shopModal.style.display = 'flex';
+    });
+
+    // 2. When the user clicks the "X" button, hide the shop overlay window
+    closeShopBtn.addEventListener('click', function() {
+        shopModal.style.display = 'none';
+    });
+
+    // 3. Optional: If the user clicks on the dark blurred background outside the card, close it too
+    window.addEventListener('click', function(event) {
+        if (event.target === shopModal) {
+        shopModal.style.display = 'none';
+        }
+    });
+</script>

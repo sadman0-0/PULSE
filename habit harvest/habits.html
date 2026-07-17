@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Harvest - Habits</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="habits.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Navigation -->
+        <header>
+            <div class="logo">
+                <h2>🌱 Habit Harvest</h2>
+            </div>
+
+            <nav>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="workout.html">Workout</a>
+                <a href="habits.html" class="active">Habits</a>
+                <a href="progress.html">Progress</a>
+                <a href="shop.html">Shop</a>
+            </nav>
+        </header>
+
+        <!-- Welcome -->
+        <section class="welcome">
+            <h1>Daily Habits</h1>
+            <p>Complete your habits to earn coins and keep your pet happy!</p>
+        </section>
+
+        <!-- Coins -->
+        <div class="coin-box">
+            🪙 Coins :
+            <span id="coins">350</span>
+        </div>
+
+        <!-- Add Habit -->
+        <section class="add-habit">
+
+            <input type="text" id="habitInput" placeholder="Enter a new habit">
+
+            <button onclick="addHabit()">
+                Add Habit
+            </button>
+
+        </section>
+
+        <!-- Habit List -->
+
+        <section class="habit-card">
+
+            <h2>Today's Habits</h2>
+
+            <ul id="habitList">
+
+                <li>
+                    <input type="checkbox" onclick="completeHabit(this)">
+                    Drink 8 Glasses of Water
+                </li>
+
+                <li>
+                    <input type="checkbox" onclick="completeHabit(this)">
+                    Exercise for 30 Minutes
+                </li>
+
+                <li>
+                    <input type="checkbox" onclick="completeHabit(this)">
+                    Read 20 Pages
+                </li>
+
+                <li>
+                    <input type="checkbox" onclick="completeHabit(this)">
+                    Sleep Before 11 PM
+                </li>
+
+            </ul>
+
+        </section>
+
+        <!-- Progress -->
+
+        <section class="progress-card">
+
+            <h2>Today's Progress</h2>
+
+            <div class="progress-bar">
+
+                <div class="progress-fill" id="progressFill">
+                </div>
+
+            </div>
+
+            <p>
+                <span id="progressText">0%</span>
+                Completed
+            </p>
+
+        </section>
+
+        <!-- Virtual Pet -->
+
+        <section class="pet-card">
+
+            <h2>Your Buddy</h2>
+
+            <img src="virtual puppy.jpeg" alt="Pet">
+
+            <h3>Yuki 🐶</h3>
+
+            <p id="petMood">
+                😊 Happy
+            </p>
+
+        </section>
+
+    </div>
+
+    <script src="habits.js"></script>
+
+</body>
+
+</html>
