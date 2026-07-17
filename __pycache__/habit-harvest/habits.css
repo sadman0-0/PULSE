@@ -1,0 +1,240 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background: #E8F5E9;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+/* Navigation */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo h2 {
+    color: #1B5E20;
+    font-weight: 800;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #2E3A2F;
+    font-weight: 700;
+    transition: .3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: #4CAF50;
+}
+
+/* Welcome */
+
+.welcome {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+}
+
+.welcome h1 {
+    color: #1B5E20;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: #666;
+}
+
+/* Coin Box */
+
+.coin-box {
+    background: #FFD54F;
+    width: 220px;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Add Habit */
+
+.add-habit {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.add-habit input {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .08);
+}
+
+.add-habit button {
+    padding: 15px 25px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-habit button:hover {
+    background: #388E3C;
+}
+
+/* Habit Card */
+
+.habit-card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    margin-bottom: 25px;
+}
+
+.habit-card h2 {
+    margin-bottom: 20px;
+    color: #1B5E20;
+}
+
+.habit-card ul {
+    list-style: none;
+}
+
+.habit-card li {
+    padding: 18px;
+    margin-bottom: 12px;
+    background: #F5F5F5;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 17px;
+}
+
+/* Progress */
+
+.progress-card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    margin-bottom: 25px;
+}
+
+.progress-card h2 {
+    margin-bottom: 20px;
+    color: #1B5E20;
+}
+
+.progress-bar {
+    height: 25px;
+    background: #ddd;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #4CAF50;
+    transition: .5s;
+}
+
+.progress-card p {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Pet Card */
+
+.pet-card {
+    background: white;
+    text-align: center;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+}
+
+.pet-card h2 {
+    color: #1B5E20;
+    margin-bottom: 15px;
+}
+
+.pet-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+.pet-card h3 {
+    margin-bottom: 10px;
+}
+
+#petMood {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+/* Responsive */
+
+@media(max-width:900px) {
+
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .add-habit {
+        flex-direction: column;
+    }
+
+    .coin-box {
+        width: 100%;
+    }
+
+    .pet-card img {
+        width: 150px;
+        height: 150px;
+    }
+
+}

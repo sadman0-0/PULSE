@@ -1,0 +1,380 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background: #E8F5E9;
+}
+
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+/* ================= NAVBAR ================= */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 800;
+    color: #1B5E20;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #2E3A2F;
+    font-weight: 700;
+    transition: .3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: #4CAF50;
+}
+
+/* ================= WELCOME ================= */
+
+.welcome {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+}
+
+.welcome h1 {
+    color: #1B5E20;
+    margin-bottom: 8px;
+}
+
+.coin-box {
+    background: #FFD54F;
+    padding: 15px 25px;
+    border-radius: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* ================= LAYOUT ================= */
+
+.workout-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 25px;
+}
+
+/* ================= CARDS ================= */
+
+.card,
+.video-card,
+.timer-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    margin-bottom: 25px;
+}
+
+.card h2,
+.video-card h2,
+.timer-card h2 {
+    color: #1B5E20;
+    margin-bottom: 18px;
+}
+
+.card h1 {
+    color: #4CAF50;
+}
+
+/* ================= EXERCISE LIST ================= */
+
+.exercise-list {
+    list-style: none;
+}
+
+.exercise-list li {
+    padding: 15px;
+    background: #F5F5F5;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    font-size: 17px;
+}
+
+/* ================= VIDEO ================= */
+
+.video-placeholder {
+    width: 100%;
+    height: 350px;
+    background: #F5F5F5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.video-placeholder img,
+.video-placeholder video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+    /* mirror the feed so it feels like a mirror, not a recording */
+}
+
+.exercise-pill {
+    display: inline-block;
+    background: #E8F5E9;
+    color: #2E7D32;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.feedback-text {
+    margin-top: 14px;
+    color: #E65100;
+    font-weight: 600;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+.tracking-hint {
+    margin-top: 8px;
+    color: #90A4AE;
+    font-size: 12px;
+}
+
+.tracking-hint code {
+    background: #F5F5F5;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+/* ================= COIN TOAST ================= */
+
+.coin-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%) translateY(20px);
+    background: #1B5E20;
+    color: #FFD54F;
+    font-weight: 700;
+    padding: 14px 26px;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, transform .3s;
+    z-index: 999;
+}
+
+.coin-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ================= TIMER ================= */
+
+.timer-card {
+    text-align: center;
+}
+
+#timer {
+    font-size: 70px;
+    color: #4CAF50;
+    margin: 25px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.buttons button {
+
+    padding: 12px 22px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    color: white;
+
+    background: #4CAF50;
+
+    transition: .3s;
+
+}
+
+.buttons button:hover {
+
+    background: #2E7D32;
+
+}
+
+/* ================= PET ================= */
+
+.pet-card {
+
+    text-align: center;
+
+}
+
+.pet-card img {
+
+    width: 180px;
+
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    margin-bottom: 15px;
+
+}
+
+#petMessage {
+
+    color: #4CAF50;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+}
+
+/* ================= FINISH BUTTON ================= */
+
+#finishBtn {
+
+    margin-top: 20px;
+
+    width: 100%;
+
+    padding: 15px;
+
+    background: #1B5E20;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+}
+
+#finishBtn:hover {
+
+    background: #388E3C;
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px) {
+
+    .workout-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    header {
+
+        flex-direction: column;
+
+        gap: 20px;
+
+    }
+
+    nav {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+    }
+
+    .welcome {
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        text-align: center;
+
+    }
+
+}
+
+@media(max-width:700px) {
+
+    .logo {
+
+        font-size: 24px;
+
+    }
+
+    #timer {
+
+        font-size: 55px;
+
+    }
+
+    .buttons {
+
+        flex-direction: column;
+
+    }
+
+    .buttons button {
+
+        width: 100%;
+
+    }
+
+    .pet-card img {
+
+        width: 150px;
+
+        height: 150px;
+
+    }
+
+}

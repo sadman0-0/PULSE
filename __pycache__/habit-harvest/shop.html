@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Harvest - Shop</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Reuses the .shop-page-container / .product-card / etc. classes
+         that already live in style.css -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 30px 20px;
+        }
+
+        .shop-page-container {
+            max-width: 640px;
+        }
+
+        .top-links {
+            max-width: 640px;
+            margin: 0 auto 14px auto;
+        }
+
+        .top-links a {
+            text-decoration: none;
+            color: #1B5E20;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .pet-preview {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #F7F9F7;
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+        }
+
+        .pet-preview .emoji {
+            font-size: 40px;
+        }
+
+        .pet-preview .details {
+            flex: 1;
+        }
+
+        .pet-preview .details .name-row {
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .pet-preview .details .xp-row {
+            font-size: 11px;
+            color: #667064;
+            margin-top: 2px;
+        }
+
+        .product-card.hh-owned {
+            opacity: 0.5;
+        }
+
+        .product-card.hh-owned .add-btn {
+            pointer-events: none;
+        }
+
+        .owned-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #2E7D32;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-links">
+        <a href="dashboard.html"><i class="fa-solid fa-chevron-left"></i> Back to Dashboard</a>
+    </div>
+
+    <div class="shop-page-container">
+
+        <header class="shop-top-header">
+            <div class="header-main">
+                <div>
+                    <h1 class="shop-title">Shop</h1>
+                    <p class="shop-subtitle">Spoil Yuki with treats, toys &amp; comfort</p>
+                </div>
+                <div class="shop-status-widgets">
+                    <div class="coins-badge">🪙 <span data-hh-coins>350</span></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="pet-preview">
+            <div class="emoji" data-hh-pet-emoji>🥚</div>
+            <div class="details">
+                <div class="name-row">Yuki — <span data-hh-pet-name>Egg</span> (<span data-hh-pet-level>Level 1</span>)</div>
+                <div class="xp-row" data-hh-pet-xp>350 / 200 coins to Puppy</div>
+            </div>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="category-tabs" id="categoryTabs">
+            <button class="tab-btn active" data-category="all">All</button>
+            <button class="tab-btn" data-category="food">Food &amp; Treats</button>
+            <button class="tab-btn" data-category="toys">Toys</button>
+            <button class="tab-btn" data-category="accessories">Accessories</button>
+            <button class="tab-btn" data-category="comfort">Comfort</button>
+        </div>
+
+        <div class="product-section">
+            <div class="products-grid" id="productsGrid">
+                <!-- Items are rendered by shop.js -->
+            </div>
+        </div>
+
+    </div>
+
+    <script src="shared.js"></script>
+    <script src="shop.js"></script>
+
+</body>
+
+</html>

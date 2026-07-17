@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Harvest</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            color: #112415;
+        }
+
+        /* ================= HEADER ================= */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #216C3F;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #112415;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #216C3F;
+        }
+
+        /* ================= HERO SECTION ================= */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 60px auto;
+            gap: 40px;
+            padding: 0 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 54px;
+            font-weight: 700;
+            color: #112415;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #5a6c64;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #216C3F 0%, #1a5332 100%);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(33, 108, 63, 0.3);
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(33, 108, 63, 0.4);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pet-companion-wrapper {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(249, 251, 250, 0.95));
+            border-radius: 32px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(33, 108, 63, 0.15);
+        }
+
+        .sketchfab-embed-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            background: transparent;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .sketchfab-embed-wrapper.emotion-happy {
+            box-shadow: 
+                0 0 40px rgba(99, 201, 122, 0.3),
+                inset 0 0 40px rgba(99, 201, 122, 0.1);
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        .sketchfab-embed-wrapper.emotion-sad {
+            filter: brightness(0.95) saturate(0.8);
+            animation: sad-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 40px rgba(99, 201, 122, 0.3),
+                    inset 0 0 40px rgba(99, 201, 122, 0.1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 60px rgba(99, 201, 122, 0.4),
+                    inset 0 0 50px rgba(99, 201, 122, 0.15);
+            }
+        }
+
+        @keyframes sad-pulse {
+            0%, 100% {
+                filter: brightness(0.95) saturate(0.8);
+            }
+            50% {
+                filter: brightness(0.92) saturate(0.75);
+            }
+        }
+
+        .pet-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background: transparent;
+        }
+
+        /* Celebration Particles */
+        .celebration-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 32px;
+            animation: float-up 0.8s ease-out forwards;
+            opacity: 1;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) scale(0.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Emotion Status */
+        .emotion-status {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: status-pulse 2s ease-in-out infinite;
+        }
+
+        .emotion-status.happy {
+            background: rgba(99, 201, 122, 0.95);
+            color: #065f46;
+            border: 2px solid #34d399;
+        }
+
+        .emotion-status.sad {
+            background: rgba(248, 113, 113, 0.95);
+            color: #7c2d2d;
+            border: 2px solid #f87171;
+        }
+
+        @keyframes status-pulse {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+            }
+        }
+
+        /* Activity Controls (for demo) */
+        .activity-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 20;
+        }
+
+        .activity-btn {
+            background: white;
+            border: 2px solid #216C3F;
+            color: #216C3F;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-btn:hover {
+            background: #216C3F;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ================= FEATURES ================= */
+        .features {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 50px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 44px;
+            margin-bottom: 60px;
+            color: #112415;
+        }
+
+        .feature-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(33, 108, 63, 0.15);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: #112415;
+        }
+
+        .feature-card p {
+            color: #5a6c64;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* ================= HOW IT WORKS ================= */
+        .how-it-works {
+            background: white;
+            padding: 80px 50px;
+            margin: 80px 0;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 44px;
+            margin-bottom: 60px;
+            color: #112415;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #216C3F;
+        }
+
+        .step p {
+            color: #5a6c64;
+            font-size: 16px;
+        }
+
+        /* ================= CTA ================= */
+        .cta {
+            text-align: center;
+            padding: 60px 50px;
+            background: linear-gradient(135deg, #216C3F 0%, #1a5332 100%);
+            color: white;
+            margin: 80px 50px;
+            border-radius: 28px;
+        }
+
+        .cta h2 {
+            font-size: 42px;
+            margin-bottom: 32px;
+        }
+
+        .signup-btn {
+            background: white;
+            color: #216C3F;
+            border: none;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .signup-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #112415;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 14px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .features,
+            .how-it-works,
+            .cta {
+                padding: 40px 20px;
+                margin: 40px 20px;
+            }
+
+            .activity-controls {
+                right: 10px;
+                bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+        <div class="logo">🐶 Habit Harvest</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>
+                Grow Better Habits,<br>
+                Grow Your Virtual Pet
+            </h1>
+            <p>
+                Build healthy habits every day and watch your
+                adorable virtual companion become happier,
+                healthier, and stronger.
+            </p>
+            <a href="login.html">
+                <button class="start-btn">Get Started</button>
+            </a>
+        </div>
+
+        <div class="hero-image">
+            <div class="pet-companion-wrapper">
+                <div class="sketchfab-embed-wrapper emotion-happy" id="petContainer">
+                   <iframe
+    title="Cute Dog - Shiba Inu ( Red )"
+    frameborder="0"
+    allow="autoplay; fullscreen; xr-spatial-tracking"
+    xr-spatial-tracking="true"
+    src="https://sketchfab.com/models/d0c902263f01478c9617b1a3d6a62b79/embed?autostart=1&autospin=0.2&ui_controls=0&ui_infos=0&ui_watermark=0&ui_hint=0"
+    class="pet-iframe">
+</iframe>
+
+                    <!-- Celebration Particles -->
+                    <div class="celebration-particles" id="particlesContainer"></div>
+
+                    <!-- Emotion Status -->
+                    <div class="emotion-status happy" id="emotionStatus">
+                        <span>🐕 Happy & Joyful!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Controls (for demo) -->
+            <div class="activity-controls">
+                <button class="activity-btn" onclick="makeHappy()">Complete Habit ✅</button>
+                <button class="activity-btn" onclick="makeSad()">Go Inactive ⏸</button>
+                <button class="activity-btn" onclick="resetPet()">Reset</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="features" id="features">
+        <h2>Why Choose Habit Harvest?</h2>
+        <div class="feature-container">
+            <div class="feature-card">
+                <h3>📅 Track Habits</h3>
+                <p>Create daily habits and complete them easily.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🐰 Virtual Pet</h3>
+                <p>Your pet grows every time you complete habits.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔥 Daily Streak</h3>
+                <p>Stay consistent and build long streaks.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🏆 Rewards</h3>
+                <p>Earn XP, badges, and unlock exciting rewards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <h3>1️⃣ Create Habits</h3>
+                <p>Add your daily goals.</p>
+            </div>
+            <div class="step">
+                <h3>2️⃣ Complete Tasks</h3>
+                <p>Finish your habits every day.</p>
+            </div>
+            <div class="step">
+                <h3>3️⃣ Grow Your Pet</h3>
+                <p>Your pet evolves as you stay consistent.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CALL TO ACTION ================= -->
+    <section class="cta">
+        <h2>Start Your Habit Journey Today!</h2>
+        <a href="signup.html">
+            <button class="signup-btn">Create Free Account</button>
+        </a>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <p>© 2026 Habit Harvest. All Rights Reserved.</p>
+    </footer>
+
+    <!-- ================= PET INTERACTION SCRIPT ================= -->
+    <script>
+        const petContainer = document.getElementById('petContainer');
+        const emotionStatus = document.getElementById('emotionStatus');
+        const particlesContainer = document.getElementById('particlesContainer');
+
+        function makeHappy() {
+            petContainer.classList.remove('emotion-sad');
+            petContainer.classList.add('emotion-happy');
+
+            emotionStatus.className = 'emotion-status happy';
+            emotionStatus.innerHTML = '<span>🐕 Happy & Joyful!</span>';
+
+            // Create celebration particles
+            createCelebrationParticles(8);
+        }
+
+        function makeSad() {
+            petContainer.classList.remove('emotion-happy');
+            petContainer.classList.add('emotion-sad');
+
+            emotionStatus.className = 'emotion-status sad';
+            emotionStatus.innerHTML = '<span>🐕 Misses you...</span>';
+
+            // Clear particles
+            particlesContainer.innerHTML = '';
+        }
+
+        function resetPet() {
+            petContainer.classList.remove('emotion-sad');
+            petContainer.classList.add('emotion-happy');
+
+            emotionStatus.className = 'emotion-status happy';
+            emotionStatus.innerHTML = '<span>🐕 Happy & Joyful!</span>';
+
+            particlesContainer.innerHTML = '';
+        }
+
+        function createCelebrationParticles(count) {
+            particlesContainer.innerHTML = '';
+
+            const emojis = ['✨', '🎉', '🌟', '💚'];
+
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.textContent = emojis[i % emojis.length];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animation = `float-up ${0.8 + Math.random() * 0.4}s ease-out ${i * 0.1}s forwards`;
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize with happy state
+        window.addEventListener('load', () => {
+            makeHappy();
+        });
+    </script>
+
+</body>
+
+</html>

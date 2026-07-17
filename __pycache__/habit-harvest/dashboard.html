@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Harvest - Desktop Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(180deg, #E8F5E9 0%, #C8E6C9 100%);
+            --primary-green: #1B5E20;
+            --accent-green: #4CAF50;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-dark: #2E3A2F;
+            --text-muted: #708071;
+            --gold: #FFB300;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #122114;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        /* Main Desktop Window Frame */
+        .desktop-window {
+            width: 100%;
+            max-width: 1440px;
+            height: 900px;
+            background: var(--bg-gradient);
+            border-radius: 24px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Widescreen App Top Navigation Bar */
+        .top-nav {
+            background: white;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Window Control Window Dots */
+        .window-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red {
+            background: #FF5F56;
+        }
+
+        .dot.yellow {
+            background: #FFBD2E;
+        }
+
+        .dot.green {
+            background: #27C93F;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            height: 100%;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            height: 100%;
+            border-bottom: 3px solid transparent;
+            padding: 0 4px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item.active {
+            color: var(--primary-green);
+            border-bottom-color: var(--primary-green);
+        }
+
+        .ai-badge {
+            background: #4A5D4E;
+            color: #E8F5E9;
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 3-Column Desktop Dashboard Workspace */
+        .dashboard-layout {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            gap: 24px;
+            padding: 24px 32px;
+            overflow: hidden;
+        }
+
+        /* Scrollable Column Base */
+        .layout-column {
+            overflow-y: auto;
+            scrollbar-width: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .layout-column::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Header Panel Styles */
+        .column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo-img {
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-circle {
+            background: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            color: var(--text-dark);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #E53935;
+            border-radius: 50%;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+        }
+
+        /* Welcome Banner & Coins */
+        .profile-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .greeting h2 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .greeting p {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .coin-counter {
+            background: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .coin-counter i {
+            color: var(--gold);
+            font-size: 20px;
+        }
+
+        .coin-val {
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--text-dark);
+        }
+
+        .coin-lbl {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 700;
+            display: block;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Column 1 Specific: Companion */
+        .companion-box {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            position: relative;
+        }
+
+        .pet-art {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            border-radius: 16px;
+        }
+
+        /* Emoji-based pet that visually evolves as lifetime coins grow */
+        .pet-stage-art {
+            width: 110px;
+            height: 110px;
+            border-radius: 16px;
+            background: linear-gradient(160deg, #E8F5E9, #C8E6C9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            flex-shrink: 0;
+        }
+
+        .shop-item {
+            cursor: pointer;
+            transition: transform .15s ease, opacity .15s ease;
+        }
+
+        .shop-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .shop-item.hh-owned {
+            opacity: 0.5;
+        }
+
+        .shop-item.hh-owned::after {
+            content: "Owned ✓";
+            display: block;
+            font-size: 10px;
+            color: var(--accent-green);
+            margin-top: 4px;
+        }
+
+        .pet-info {
+            flex: 1;
+        }
+
+        .pet-name-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .edit-icon {
+            color: var(--text-muted);
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .lvl-txt {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin: 4px 0;
+        }
+
+        .progress-track {
+            background: #E2EBE3;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .progress-fill {
+            background: var(--accent-green);
+            height: 100%;
+            width: 60%;
+        }
+
+        .status-metric {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        .status-metric.h i {
+            color: #E53935;
+        }
+
+        .status-metric.p i {
+            color: var(--gold);
+        }
+
+        /* Missions Box */
+        .box-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            font-weight: 800;
+        }
+
+        .box-badge {
+            background: #E8F5E9;
+            color: var(--primary-green);
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .task-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #F4F8F5;
+            padding: 14px 18px;
+            border-radius: 16px;
+        }
+
+        .task-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .task-icon-wrap {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .task-item:nth-child(1) .task-icon-wrap {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .task-item:nth-child(2) .task-icon-wrap {
+            background: #E3F2FD;
+            color: #1565C0;
+        }
+
+        .task-item:nth-child(3) .task-icon-wrap {
+            background: #EDE7F6;
+            color: #651FFF;
+        }
+
+        .task-item:nth-child(4) .task-icon-wrap {
+            background: #FFF3E0;
+            color: #EF6C00;
+        }
+
+        .check-done {
+            color: var(--accent-green);
+            font-size: 20px;
+        }
+
+        .action-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 18px;
+            padding: 18px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(27, 94, 32, 0.2);
+            text-decoration: none;
+        }
+
+        /* Column 2 Specific: Center Stage Workout */
+        .center-header {
+            text-align: center;
+            position: relative;
+            width: 100%;
+        }
+
+        .back-arrow {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .streak-pill {
+            background: #FFF3E0;
+            color: #E65100;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+
+        .workout-hero-card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            min-height: 480px;
+        }
+
+        .workout-meta h3 {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .workout-meta p {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* Interactive UI Overlay Simulation */
+        .video-simulator {
+            flex: 1;
+            margin: 20px 0;
+            background: #F5F5F5;
+            border-radius: 16px;
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-skeleton-overlay {
+            position: absolute;
+            inset: 0;
+            border: 3px solid var(--accent-green);
+            border-radius: 16px;
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        .ai-label-tag {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .timer-ring {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 800;
+            border: 3px solid var(--accent-green);
+        }
+
+        .rep-counter-board {
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 16px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .rep-num {
+            font-size: 32px;
+            font-weight: 900;
+            color: #FFF;
+        }
+
+        .rep-lbl {
+            font-size: 11px;
+            color: #B0BEC5;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .workout-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .ctrl-btn {
+            background: #F0F4F1;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        .ctrl-btn.play-pause {
+            background: var(--primary-green);
+            color: white;
+            width: 64px;
+            height: 64px;
+            font-size: 24px;
+        }
+
+        /* Column 3 Specific: Yuki's World & Metrics */
+        .diorama-card {
+            border-radius: 24px;
+            height: 210px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 10px;
+            background-image: linear-gradient(to bottom, #B2DFDB, #E8F5E9);
+        }
+
+        .diorama-badge {
+            position: absolute;
+            top: 14px;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            z-index: 3;
+        }
+
+        .diorama-badge.left {
+            left: 14px;
+        }
+
+        .diorama-badge.right {
+            right: 14px;
+        }
+
+        .doghouse-img {
+            width: 90%;
+            height: 85%;
+            object-fit: contain;
+            z-index: 2;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .shop-item {
+            background: #F4F8F5;
+            border-radius: 14px;
+            padding: 10px 4px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .shop-item-img {
+            width: 36px;
+            height: 36px;
+            margin: 4px auto;
+            display: block;
+            font-size: 24px;
+        }
+
+        .shop-cost {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .progress-summary-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .summary-pill {
+            background: #F4F8F5;
+            border-radius: 14px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .summary-pill .v {
+            font-size: 18px;
+            font-weight: 800;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .summary-pill .l {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main Widescreen Desktop Shell -->
+    <div class="desktop-window">
+
+        <!-- Top Nav Bar -->
+        <header class="top-nav">
+            <div class="window-dots">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#" class="nav-item active">Dashboard</a>
+                <a href="workout.html" class="nav-item">Workouts</a>
+                <a href="habits.html" class="nav-item">Habits</a>
+                <a href="progress.html" class="nav-item">Progress</a>
+                <a href="shop.html" class="nav-item">Shop</a>
+            </nav>
+
+            <div class="ai-badge">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> AI Tracking
+            </div>
+        </header>
+
+        <!-- 3-Column Layout Workspace -->
+        <main class="dashboard-layout">
+
+            <!-- COLUMN 1: LEFT PANEL (Brand Header, User Info, & Daily Task Stack) -->
+            <section class="layout-column">
+                <div class="column-header">
+                    <div class="brand-group">
+                        <!-- Linked exactly to your logo.png asset -->
+                        <img class="brand-logo-img" src="./logo.png" alt="Habit Harvest Logo">
+                    </div>
+                    <div class="header-buttons">
+                        <button class="btn-circle"><i class="fa-solid fa-bars"></i></button>
+                        <button class="btn-circle"><i class="fa-regular fa-bell"></i><span
+                                class="badge-dot"></span></button>
+                    </div>
+                </div>
+
+                <div class="profile-summary">
+                    <div class="greeting">
+                        <p>Good morning</p>
+                        <h2>Deborah! 👋</h2>
+                    </div>
+                    <div class="coin-counter">
+                        <i class="fa-solid fa-circle-nodes"></i>
+                        <div>
+                            <span class="coin-val" data-hh-coins>350</span>
+                            <span class="coin-lbl">Coins</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card companion-box">
+                    <!-- Emoji-based pet that grows through 5 stages as
+                         lifetime coins are earned (Egg -> Champion Dog) -->
+                    <div class="pet-stage-art" data-hh-pet-emoji>🥚</div>
+                    <div class="pet-info">
+                        <div class="pet-name-row">Yuki <span class="streak-pill" data-hh-pet-name>Egg</span></div>
+                        <div class="lvl-txt" data-hh-pet-level>Level 1</div>
+                        <div class="progress-track">
+                            <div class="progress-fill" data-hh-pet-progress></div>
+                        </div>
+                        <div class="lvl-txt" style="margin-top:-8px; font-size:10px;" data-hh-pet-xp>350 / 200 coins</div>
+
+                        <div class="status-metric h"><i class="fa-solid fa-heart"></i> Health: 90%</div>
+                        <div class="status-metric p"><i class="fa-solid fa-face-smile"></i> Happiness: 85%</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="box-title-row">
+                        <span>Today's Missions</span>
+                        <span class="box-badge">4/4</span>
+                    </div>
+                    <div class="task-stack">
+                        <div class="task-item">
+                            <div class="task-left">
+                                <div class="task-icon-wrap"><i class="fa-solid fa-person-running"></i></div>Exercise for
+                                15 min
+                            </div>
+                            <i class="fa-solid fa-circle-check check-done"></i>
+                        </div>
+                        <div class="task-item">
+                            <div class="task-left">
+                                <div class="task-icon-wrap"><i class="fa-solid fa-droplet"></i></div>Drink 8 glasses of
+                                water
+                            </div>
+                            <i class="fa-solid fa-circle-check check-done"></i>
+                        </div>
+                        <div class="task-item">
+                            <div class="task-left">
+                                <div class="task-icon-wrap"><i class="fa-solid fa-mobile-screen"></i></div>Keep screen
+                                time under 3 hrs
+                            </div>
+                            <i class="fa-solid fa-circle-check check-done"></i>
+                        </div>
+                        <div class="task-item">
+                            <div class="task-left">
+                                <div class="task-icon-wrap"><i class="fa-solid fa-sun"></i></div>Go outside for fresh
+                                air
+                            </div>
+                            <i class="fa-solid fa-circle-check check-done"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="action-btn" href="workout.html">Start Workout <i class="fa-solid fa-chevron-right"></i></a>
+            </section>
+
+            <!-- COLUMN 2: CENTER PANEL (Active Routine Video Visualizer) -->
+            <section class="layout-column">
+                <div class="center-header">
+                    <i class="fa-solid fa-chevron-left back-arrow"></i>
+                    <h2 style="font-weight: 800; font-size: 20px;">Workout <span class="streak-pill"><i
+                                class="fa-solid fa-fire"></i> 12 Day Streak</span></h2>
+                </div>
+
+                <div class="workout-hero-card">
+                    <div class="workout-meta">
+                        <h3>Jumping Jacks</h3>
+                        <p>Great for full body warm-up</p>
+                    </div>
+
+                    <div class="video-simulator">
+                        <div class="ai-skeleton-overlay"></div>
+                        <div class="ai-label-tag">AI Tracking</div>
+                        <div class="timer-ring"><span>00:25</span><span style="font-size:7px; opacity:0.8;">Left</span>
+                        </div>
+
+                        <div class="rep-counter-board">
+                            <div class="rep-lbl">Reps</div>
+                            <div class="rep-num">18 <span style="font-size: 16px; color:#90A4AE;">/ 20</span></div>
+                        </div>
+                    </div>
+
+                    <div class="workout-controls">
+                        <button class="ctrl-btn"><i class="fa-solid fa-music"></i></button>
+                        <button class="ctrl-btn play-pause"><i class="fa-solid fa-pause"></i></button>
+                        <button class="ctrl-btn"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLUMN 3: RIGHT PANEL (Pet Diorama Space & Personal Progress Tracking) -->
+            <section class="layout-column">
+                <div class="column-header" style="justify-content: center;">
+                    <h2 style="font-weight: 800; font-size: 20px;">Buddy's World</h2>
+                </div>
+
+                <div class="diorama-card">
+                    <div class="diorama-badge left">Mood: <strong style="color:#E65100;">Happy 😊</strong></div>
+                    <div class="diorama-badge right">Energy: <strong style="color:#2E7D32;">85% ⚡</strong></div>
+
+                    <!-- Linked exactly to your house.jpeg asset -->
+                    <img class="doghouse-img" src="dog house.jpeg" alt="Buddy's House Area">
+                </div>
+
+                <div class="card">
+                    <div class="box-title-row" style="margin-bottom: 8px;">
+                        <span>Shop</span>
+                        <a href="shop.html" style="color: var(--accent-green); font-size: 13px; text-decoration:none;">View all &gt;</a>
+                    </div>
+                    <div class="shop-grid">
+                        <div class="shop-item" data-hh-item-id="food_healthy" onclick="HH.buyItem('food_healthy', 100, 'Healthy Food')">
+                            <span class="shop-item-img">🥩</span>
+                            Healthy Food
+                            <div class="shop-cost"><i class="fa-solid fa-circle-nodes" style="color:var(--gold)"></i>
+                                100</div>
+                        </div>
+                        <div class="shop-item" data-hh-item-id="toy_fun" onclick="HH.buyItem('toy_fun', 150, 'Fun Toy')">
+                            <span class="shop-item-img">🎾</span>
+                            Fun Toy
+                            <div class="shop-cost"><i class="fa-solid fa-circle-nodes" style="color:var(--gold)"></i>
+                                150</div>
+                        </div>
+                        <div class="shop-item" data-hh-item-id="collar_cool" onclick="HH.buyItem('collar_cool', 200, 'Cool Collar')">
+                            <span class="shop-item-img">🧣</span>
+                            Cool Collar
+                            <div class="shop-cost"><i class="fa-solid fa-circle-nodes" style="color:var(--gold)"></i>
+                                200</div>
+                        </div>
+                        <div class="shop-item" data-hh-item-id="bed_cozy" onclick="HH.buyItem('bed_cozy', 250, 'Cozy Bed')">
+                            <span class="shop-item-img">🛏️</span>
+                            Cozy Bed
+                            <div class="shop-cost"><i class="fa-solid fa-circle-nodes" style="color:var(--gold)"></i>
+                                250</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="box-title-row" style="margin-bottom: 8px;">
+                        <span>Your Progress</span>
+                        <span style="font-size: 13px; color: var(--text-muted);">This Week <i
+                                class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div class="progress-summary-row">
+                        <div class="summary-pill">
+                            <span class="l">Exercise</span>
+                            <span class="v" style="color:#2E7D32;">300 <small style="font-size:10px;">min</small></span>
+                        </div>
+                        <div class="summary-pill">
+                            <span class="l">Screen Time</span>
+                            <span class="v" style="color:#651FFF;">18 <small style="font-size:10px;">hrs</small></span>
+                        </div>
+                        <div class="summary-pill">
+                            <span class="l">Coins Earned</span>
+                            <span class="v" style="color:var(--gold);" data-hh-pet-xp>650</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="shared.js"></script>
+
+</body>
+
+</html>
