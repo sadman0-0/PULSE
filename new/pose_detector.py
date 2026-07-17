@@ -62,3 +62,4 @@ class PoseDetector:
         if lm:
             return lm["x"], lm["y"]
         return None
+    #test
