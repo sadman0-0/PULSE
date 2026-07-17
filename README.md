@@ -1,8 +1,11 @@
 Team : Pulse
+
 problem-track; health & wellbeing
 
-members : Sadbhav Neupane
-        : Kshitiz Adhikari
-        : Deborah KC
-        : Merina Khadka
+<h3>Members</h3>
+
+: Sadbhav Neupane<br>
+: Kshitiz Adhikari<br>
+: Deborah KC<br>
+: Merina Khadka<br>
           
