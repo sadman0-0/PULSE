@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Habit Harvest</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #2E7D32;
+            --light-green: #E8F5E9;
+            --bg-color: #F9FBF9;
+            --text-main: #1C211D;
+            --text-sub: #667064;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Mobile Container Layout matching the reference design */
+        .shop-container {
+            width: 100%;
+            max-width: 450px;
+            background-color: var(--card-bg);
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            padding-bottom: 90px;
+            /* Space for bottom nav */
+            position: relative;
+        }
+
+        /* Header Layout */
+        .header {
+            padding: 30px 24px 15px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .page-title {
+            font-size: 34px;
+            font-weight: 700;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .coin-badge {
+            background-color: #FFFDF0;
+            border: 1px solid #FFE0B2;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+
+        .cart-icon {
+            background-color: #F1F3F1;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background-color: var(--primary-green);
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--text-sub);
+            line-height: 1.4;
+        }
+
+        /* Category Filter Pills */
+        .categories-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 24px;
+            scrollbar-width: none;
+            /* Hide scrollbar for Firefox */
+        }
+
+        .categories-scroll::-webkit-scrollbar {
+            display: none;
+            /* Hide scrollbar for Chrome/Safari */
+        }
+
+        .category-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            border-radius: 25px;
+            background-color: #F1F3F1;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 14px;
+            white-space: nowrap;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .category-pill.active {
+            background-color: var(--primary-green);
+            color: white;
+        }
+
+        /* Shop Sections & Item Grids */
+        .shop-section {
+            padding: 20px 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .see-all {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        /* Item Display Card */
+        .item-card {
+            background-color: #F7F9F7;
+            border-radius: 20px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .item-image-placeholder {
+            background-color: #FFFFFF;
+            border-radius: 16px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .item-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .item-price {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .add-btn {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .add-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* Navigation Bottom Bar */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 76px;
+            background-color: #FFFFFF;
+            border-top: 1px solid #EAEAEA;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #A0A8A0;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .nav-item.active {
+            color: var(--primary-green);
+        }
+
+        .nav-item i {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="shop-container">
+        <!-- Top App Bar Content -->
+        <header class="header">
+            <div class="header-top">
+                <h1 class="page-title">Shop</h1>
+                <div class="header-actions">
+                    <div class="coin-badge">
+                        <span>🪙</span> 350
+                    </div>
+                    <div class="cart-icon">
+                        <i class="fa-solid fa-shopping-bag"></i>
+                        <span class="cart-badge">2</span>
+                    </div>
+                </div>
+            </div>
+            <p class="subtitle">Everything for Yuki's<br>happiness & health 💚</p>
+        </header>
+
+        <!-- Horizontal Scrollable Filters -->
+        <div class="categories-scroll">
+            <button class="category-pill active">💼 All Items</button>
+            <button class="category-pill">🍖 Food</button>
+            <button class="category-pill">⚽ Toys</button>
+            <button class="category-pill">🧣 Accessories</button>
+            <button class="category-pill">🛏️ Beds</button>
+        </div>
+
+        <!-- Food Section -->
+        <section class="shop-section">
+            <div class="section-header">
+                <h2 class="section-title">Food & Treats 🐾</h2>
+                <a href="#" class="see-all">See all <i class="fa-solid fa-chevron-right"
+                        style="font-size: 11px;"></i></a>
+            </div>
+            <div class="items-grid">
+                <!-- Card 1 -->
+                <div class="item-card">
+                    <div class="item-image-placeholder">🧆</div>
+                    <h3 class="item-name">Premium Dog Food</h3>
+                    <div class="item-footer">
+                        <div class="item-price">🪙 120</div>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="item-card">
+                    <div class="item-image-placeholder">🫙</div>
+                    <h3 class="item-name">Chicken Treats</h3>
+                    <div class="item-footer">
+                        <div class="item-price">🪙 80</div>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toys Section -->
+        <section class="shop-section">
+            <div class="section-header">
+                <h2 class="section-title">Toys 🐾</h2>
+                <a href="#" class="see-all">See all <i class="fa-solid fa-chevron-right"
+                        style="font-size: 11px;"></i></a>
+            </div>
+            <div class="items-grid">
+                <!-- Card 1 -->
+                <div class="item-card">
+                    <div class="item-image-placeholder">🎾</div>
+                    <h3 class="item-name">Tennis Ball</h3>
+                    <div class="item-footer">
+                        <div class="item-price">🪙 50</div>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="item-card">
+                    <div class="item-image-placeholder">🦆</div>
+                    <h3 class="item-name">Squeaky Toy</h3>
+                    <div class="item-footer">
+                        <div class="item-price">🪙 70</div>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Bottom Tab Navigation -->
+        <nav class="bottom-nav">
+            <!-- Ensure your dashboard filename matches here to allow clicking back -->
+            <a href="dashboard.html" class="nav-item">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-dumbbell"></i>
+                <span>Workout</span>
+            </a>
+            <a href="#" class="nav-item active">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <span>Shop</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>Progress</span>
+            </a>
+        </nav>
+    </div>
+
+</body>
+
+</html>
