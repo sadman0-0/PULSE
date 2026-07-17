@@ -12,7 +12,7 @@ from exercise_session import ExerciseSession
 engine = pyttsx3.init()
 last_feedback_time = 0
 
-
+ 
 def speak_text(text):
     try:
         engine.say(text)
